@@ -1,0 +1,14 @@
+@import "bootstrap/dist/css/bootstrap.css";
+@import "~@fortawesome/fontawesome-free/css/all.css";
+
+$primary-color:purple;
+$secondary-color:seagreen;
+
+.navbar-light .navbar-nav  .nav-link{
+    color:$primary-color;
+} 
+
+ .list-group-item.active {
+    background-color: $secondary-color;
+    border-color: $secondary-color;
+} 

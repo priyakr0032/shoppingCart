@@ -1,0 +1,28 @@
+import { Component, OnDestroy, OnInit } from '@angular/core';
+
+import { Observable, Subscription } from 'rxjs';
+import { ShoppingCart } from 'shared/models/shopping-cart';
+import { ShoppingCartService } from 'shared/service/shopping-cart.service';
+
+@Component({
+  selector: 'check-out',
+  templateUrl: './check-out.component.html',
+  styleUrls: ['./check-out.component.css']
+})
+export class CheckOutComponent implements OnInit,OnDestroy{
+  cart$:Observable<ShoppingCart>;
+  cartSubscription:Subscription;
+  cart;
+  constructor( private shoppingCartService:ShoppingCartService) { }
+
+ async ngOnInit(){
+  this.cart$ = await this.shoppingCartService.getCart();
+  this.cartSubscription =this.cart$.subscribe(cart => this.cart = cart);
+ }
+
+ ngOnDestroy(){
+   this.cartSubscription.unsubscribe();
+ }
+
+  
+}

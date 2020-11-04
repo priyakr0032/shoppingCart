@@ -1,0 +1,38 @@
+<nav class="navbar navbar-expand-md navbar-light bg-light fixed-top">
+  <div class="container">
+    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" routerLink="/">
+            <i class="fas fa-leaf"></i>
+            <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link  leaf-image" routerLink="/shopping">
+            <i class="fas fa-shopping-cart"></i>
+            <span class="badge badge-warning badge-pill" *ngIf="cart$ | async as cart">{{cart.totalItemsCount}}</span>
+          </a>
+         
+        </li>
+      </ul>
+
+      <ul class="navbar-nav">
+        <ng-template #anonymusUser>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/login" >Login</a>
+        </li>
+      </ng-template>
+        <li ngbDropdown class="nav-item" *ngIf ="appuser  else anonymusUser">
+          <a class="nav-link dropdown-toggle" id="dropdown01" aria-haspopup="true" aria-expanded="false" ngbDropdownToggle>{{appuser.name}}</a>
+          <div ngbDropdownMenu>
+            <a ngbDropdownItem routerLink="/my/orders">My Orders</a>
+            <a *ngIf ="appuser.isAdmin" ngbDropdownItem routerLink="/admin/orders">Manage Orders</a>
+            <a *ngIf ="appuser.isAdmin" ngbDropdownItem routerLink="/admin/products">Manage Products</a>
+            <a ngbDropdownItem (click)="logOut()">Log Out</a>
+          </div>
+        </li>
+      </ul>
+
+    </div>
+  </div>
+</nav>

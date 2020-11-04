@@ -1,0 +1,19 @@
+<h2>Orders</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Customer</th>
+            <th>Date</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <ng-container *ngIf="orderItems">
+        <tr *ngFor ="let item of orderItems">
+            <td>{{item.order.shipping.coustomerName}}</td>
+           <td>{{item.order.datePlaced | date:'mediumDate'}}</td>
+           <td><a [routerLink]="['/admin/orders/',item.key]">view</a></td>
+        </tr>
+    </ng-container>
+    </tbody>
+</table>
